@@ -1,0 +1,11 @@
+The users of this software agree to the license agreements of all libraries that are used, as specified in
+lib/COLT-LICENSE-AGREEMENT.TXT
+lib/XERCES-LICENSE-AGREEMENT.TXT
+lib/XOM-LICENSE-AGREEMENT.TXT
+
+The users of this software agree to refer to the following publication:
+"SynTReN: a generator of synthetic gene expression data for design and analysis of structure learning algorithms"
+Tim Van den Bulcke, Koenraad Van Leemput, Bart Naudts, Piet van Remortel, Hongwu
+Ma, Alain Verschoren, Bart De Moor and Kathleen Marchal
+published in BMC Bioinformatics, 2006
+
