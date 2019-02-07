@@ -11,7 +11,7 @@ datadirname = "/home/user/Sirius/gene_network_sirius_2019/Data"
 datafilename = datadirname + "/{0}/{0}_data.txt"
 graphfilename = datadirname + "/{0}/{0}_graph.xml"
 # datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr']
-datalist = ['genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_500_exps_10_bgr', 'genes_600_exps_10_bgr']
+datalist = ['genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
 algolist = ['clr', 'aracne', 'mrnet', 'mrnetb']
 
 def run_minet(filename, algo):
