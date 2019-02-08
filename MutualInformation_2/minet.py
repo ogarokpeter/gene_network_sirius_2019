@@ -10,8 +10,10 @@ from sklearn.metrics import roc_curve, auc
 datadirname = "/home/user/Sirius/gene_network_sirius_2019/Data"
 datafilename = datadirname + "/{0}/{0}_data.txt"
 graphfilename = datadirname + "/{0}/{0}_graph.xml"
-# datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr']
-datalist = ['genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
+matricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices"
+predictedfilename = matricesdirname + "/{1}_{0}_predicted.txt"
+truefilename = matricesdirname + "/{1}_{0}_true.txt"
+datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
 algolist = ['clr', 'aracne', 'mrnet', 'mrnetb']
 
 def run_minet(filename, algo):
@@ -37,7 +39,7 @@ def run_minet(filename, algo):
     weight_adjacency_matrix = np.array(f)
 
     long_array = weight_adjacency_matrix[np.triu_indices(weight_adjacency_matrix.shape[0])]
-    return long_array
+    return long_array, weight_adjacency_matrix
 
 
 
@@ -64,9 +66,12 @@ for i, dataname in enumerate(datalist):
 
     for j, algo in enumerate(algolist):
 
-        long_array = run_minet(datafilename.format(dataname), algo)
+        long_array, predicted_matrix = run_minet(datafilename.format(dataname), algo)
         true_matrix = xml_graph_to_adjacency_matrix(graphfilename.format(dataname))
         true_array = true_matrix[np.triu_indices(true_matrix.shape[0])]
+
+        np.savetxt(predictedfilename.format(dataname, algo), predicted_matrix, delimiter='\t')
+        np.savetxt(truefilename.format(dataname, algo), true_matrix, delimiter='\t')
 
         roc_auc = 0
         try:
