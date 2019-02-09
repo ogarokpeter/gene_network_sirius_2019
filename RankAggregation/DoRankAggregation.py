@@ -130,6 +130,8 @@ if __name__ == "__main__":
         fpr, tpr, thresholds = roc_curve(true_array, predicted_array)
         roc_auc = auc(fpr, tpr)
         results[i] = roc_auc
+        with open(savematricesdirname + "/{0}_auc.txt".format(dataname), 'w') as f:
+            f.write(str(roc_auc) + '\n')
         print("done", dataname, results[i])
         
         # print("done", dataname, algo)

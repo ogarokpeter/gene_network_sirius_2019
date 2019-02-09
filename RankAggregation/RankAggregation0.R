@@ -5,6 +5,6 @@ filename2 <- '/home/user/Sirius/gene_network_sirius_2019/RankAggregation/data/ar
 d <- read.table(filename1)
 d <- as.matrix(d)
 print(d)
-CES <- RankAggreg(d, 3, method="GA", maxIter=10, verbose=False)
+CES <- RankAggreg(d, 3, method="GA", maxIter=10, verbose=FALSE)
 res <- CES$top.list
 print(res)
