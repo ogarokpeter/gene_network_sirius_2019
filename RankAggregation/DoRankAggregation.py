@@ -118,8 +118,8 @@ if __name__ == "__main__":
         true_df.to_csv(savematricesdirname + "/{0}_true.txt".format(dataname), index=True, header=True, sep='\t')
         # print(true_df)
 
-        true_array = true_df.values[np.triu_indices(true_df.values.shape[0])]
-        predicted_array = predicted_df.values[np.triu_indices(predicted_df.values.shape[0])]
+        true_array = true_df.values[np.triu_indices(true_df.values.shape[0], k=1)]
+        predicted_array = predicted_df.values[np.triu_indices(predicted_df.values.shape[0], k=1)]
         
         roc_auc = 0
         # try:
