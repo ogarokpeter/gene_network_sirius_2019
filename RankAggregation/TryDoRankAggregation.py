@@ -132,7 +132,7 @@ if __name__ == "__main__":
     for i, dataname in enumerate(datalist):
 
         true_df = pd.read_csv(truefilename.format(dataname, algolist[1]), index_col=0, sep='\t')
-        predicted_df = compute_aggregated_matrix(len(algolist), [predictedfilename.format(dataname, algo) for algo in algolist] + [truefilename.format(dataname, algolist[1])], tmpfile, savematricesfilename.format(dataname))
+        predicted_df = compute_aggregated_matrix(len(algolist), [predictedfilename.format(dataname, algo) for algo in algolist], tmpfile, savematricesfilename.format(dataname))
         true_df.to_csv(savematricesdirname + "/{0}_true.txt".format(dataname), index=True, header=True, sep='\t')
         # print(true_df)
 
