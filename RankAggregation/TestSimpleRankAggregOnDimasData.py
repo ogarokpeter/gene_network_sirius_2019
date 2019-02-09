@@ -6,12 +6,13 @@ from sklearn.metrics import roc_curve, auc
 import pandas as pd
 
 
-def compute_aggregated_matrix(matrixfiles_num, matrixfiles, savematrixfile, saveresultfile, coeffs=[1, 1, 1, 1]):
+def compute_aggregated_matrix(matrixfiles_num, matrixfiles, savematrixfile, saveresultfile):
+    coeffs = [1 for i in range(matrixfiles_num)]
     # matrixfiles_num = int(sys.argv[1])
     # matrixfiles = [sys.argv[i] for i in range(2, matrixfiles_num + 2)]
     # savematrixfile = sys.argv[matrixfiles_num + 2]
     # saveresultfile = sys.argv[matrixfiles_num + 3]
-    matrices = [pd.read_csv(f, index_col=0, sep='\t') for f in matrixfiles]
+    matrices = [pd.read_csv(f, index_col=0, sep=',').T.abs() for f in matrixfiles]
     genes = matrices[0].index
     # print(genes)
 
@@ -43,15 +44,17 @@ def compute_aggregated_matrix(matrixfiles_num, matrixfiles, savematrixfile, save
     return result_df
 
 
-matricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_1"
-savematricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_4"
-predictedfilename = matricesdirname + "/{1}_{0}_predicted.txt"
-truefilename = matricesdirname + "/{1}_{0}_true.txt"
+matricesdirname = "/home/user/Sirius/dimasdata"
+truematricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_1"
+savematricesdirname = "/home/user/Sirius/dimasdata/Matrices_2"
+predictedfilename = matricesdirname + "/{0}/{0}_{1}.csv"
+truefilename = truematricesdirname + "/{1}_{0}_true.txt"
 savematricesfilename = savematricesdirname + "/{0}_predicted.txt"
 datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
-algolist = ['clr', 'aracne', 'mrnet', 'mrnetb']
-saveresultsfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/res2.txt"
-tmpfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/data/tmp4.txt"
+# algolist = ['ET', 'RF']
+algolist = ['BR', 'ET', 'GB', 'Lasso_0.001', 'Lasso_0.0001', 'Lasso_0.00001', 'Lasso_0.000001', 'Lasso_0.0000001', 'RF', 'XGB']
+saveresultsfile = "/home/user/Sirius/dimasdata/res3.txt"
+tmpfile = "/home/user/Sirius/dimasdata/tmp2.txt"
 
 
 
@@ -60,7 +63,7 @@ if __name__ == "__main__":
 
     for i, dataname in enumerate(datalist):
 
-        true_df = pd.read_csv(truefilename.format(dataname, algolist[1]), index_col=0, sep='\t')
+        true_df = pd.read_csv(truefilename.format(dataname, 'aracne'), index_col=0, sep='\t')
         predicted_df = compute_aggregated_matrix(len(algolist), [predictedfilename.format(dataname, algo) for algo in algolist], tmpfile, savematricesfilename.format(dataname))
         true_df.to_csv(savematricesdirname + "/{0}_true.txt".format(dataname), index=True, header=True, sep='\t')
         # print(true_df)
@@ -82,10 +85,8 @@ if __name__ == "__main__":
             f.write(str(roc_auc) + '\n')
         print("done", dataname, results[i])
         with open(saveresultsfile, "a") as f:
-            f.write("done " + dataname + str(results[i]))
+            f.write("done " + dataname + str(results[i]) + '\n')
         
         # print("done", dataname, algo)
 
     print(results)
-
-
