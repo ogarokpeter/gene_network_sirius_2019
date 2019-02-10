@@ -14,7 +14,8 @@ graphfilename = datadirname + "/{0}/{0}_graph.xml"
 matricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_1"
 predictedfilename = matricesdirname + "/{1}_{0}_predicted.txt"
 truefilename = matricesdirname + "/{1}_{0}_true.txt"
-datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
+# datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
+datalist = ['genes_200_exps_20_bgr', 'genes_200_exps_40_bgr', 'genes_400_exps_40_bgr', 'genes_400_exps_80_bgr', 'genes_500_exps_50_bgr', 'genes_500_exps_100_bgr']
 algolist = ['clr', 'aracne', 'mrnet', 'mrnetb']
 
 def run_minet(filename, algo):
