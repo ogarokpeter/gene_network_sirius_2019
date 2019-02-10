@@ -1,0 +1,15 @@
+node LARP1B correlated with node ZNF708
+node KRTAP4-5 correlated with node ZKSCAN3
+node MGMT correlated with node TMEM52B
+node MOSPD2 correlated with node ZKSCAN3
+node TNFRSF13C correlated with node NR1I2
+node IGHMBP2 correlated with node IRF9
+node RHOU correlated with node PICALM
+node ZHX1 correlated with node PICALM
+node CUL9 correlated with node P2RX7
+node HES1 correlated with node IRF9
+node KDM3B correlated with node ZNF708
+node ZNF48 correlated with node FUT8
+node NAAA correlated with node NR1I2
+node PSMD10 correlated with node ZNF708
+node PAPSS2 correlated with node FUT8
