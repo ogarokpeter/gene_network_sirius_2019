@@ -44,15 +44,15 @@ def compute_aggregated_matrix(matrixfiles_num, matrixfiles, savematrixfile, save
 
 
 matricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_1"
-savematricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_4"
+savematricesdirname = "/home/user/Sirius/gene_network_sirius_2019/Matrices_6"
 predictedfilename = matricesdirname + "/{1}_{0}_predicted.txt"
 truefilename = matricesdirname + "/{1}_{0}_true.txt"
 savematricesfilename = savematricesdirname + "/{0}_predicted.txt"
-datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
-algolist = ['clr', 'aracne', 'mrnet', 'mrnetb']
-saveresultsfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/res2.txt"
-tmpfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/data/tmp4.txt"
-
+# datalist = ['exps_10', 'exps_10_2', 'exps_10_bgr', 'exps_50', 'exps_50_2', 'exps_50_bgr', 'exps_100', 'exps_100_2', 'exps_100_bgr', 'genes_200_exps_10_bgr', 'genes_400_exps_10_bgr', 'genes_600_exps_10_bgr', 'genes_700_exps_10_bgr', 'genes_1000_exps_10_bgr']
+datalist = ['genes_200_exps_10_bgr', 'genes_200_exps_20_bgr', 'genes_200_exps_40_bgr', 'genes_400_exps_10_bgr', 'genes_400_exps_40_bgr', 'genes_400_exps_80_bgr', 'genes_500_exps_10_bgr', 'genes_500_exps_50_bgr', 'genes_500_exps_100_bgr']
+algolist = ['aracne', 'mrnet', 'mrnetb']
+saveresultsfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/res_arrgeg_on_petr_big_data_many_exps.txt"
+tmpfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/data/tmp5.txt"
 
 
 if __name__ == "__main__":
@@ -87,5 +87,4 @@ if __name__ == "__main__":
         # print("done", dataname, algo)
 
     print(results)
-
 
