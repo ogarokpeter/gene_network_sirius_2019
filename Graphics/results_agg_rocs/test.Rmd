@@ -1,0 +1,50 @@
+---
+title: "test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+data <- read.table("/home/user/Sirius/gene_network_sirius_2019/Graphics/result.txt")
+
+library(reshape2)
+library(ggplot2)
+library(pheatmap)
+
+data.decasted = dcast(data, V1 ~ V2, value.var = "V3")
+
+row_names = data.decasted[, 1]
+col_names = c("100x10", "200x10", "200x10 bgr", "100x100", "200x100", "200x100 bgr", "100x50", "200x50", "200x50 bgr", "2000x10 bgr", "400x10 bgr", "400x20 bgr", "400x40 bgr", "800x10 bgr", "1000x10 bgr", "1000x50 bgr", "1200x10 bgr", "1400x10 bgr")
+
+data.decasted.new = data.decasted[, 2:dim(data.decasted)[2]]
+
+rownames(data.decasted.new) = row_names
+colnames(data.decasted.new) = col_names
+
+pheatmap(data.decasted.new,border_color = "black",fontsize_row = 15, fontsize_col=15)
+
+library(RColorBrewer)
+col=brewer.pal(8,"RdYlGn")
+pheatmap(data.decasted.new,border_color = "black",fontsize_row = 15, fontsize_col=15,color = colorRampPalette(rev(brewer.pal(n = 7, 
+	name = "PiYG")))(100))
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

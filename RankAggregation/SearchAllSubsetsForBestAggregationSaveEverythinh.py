@@ -71,10 +71,10 @@ dataname_dima = datafolder_dima + "/{0}/{0}_{1}.csv"
 dataname_petr = datafolder_petr + "/{1}_{0}_predicted.txt"
 dataname_sergey = datafolder_sergey + "/{0}_{1}.csv"
 
-tmpfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/tmp_Subsets.txt"
-savematricesdirname = "/home/user/Sirius/Matrices_Subsets"
+tmpfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/tmp_Subsets_1.txt"
+savematricesdirname = "/home/user/Sirius/Matrices_Subsets_2"
 savematricesfilename = savematricesdirname + "/{0}_predicted.txt"
-saveresultsfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/res_aggregated_full.txt"
+saveresultsfile = "/home/user/Sirius/gene_network_sirius_2019/RankAggregation/res_aggregated_full1.txt"
 
 
 if __name__ == "__main__":
@@ -92,6 +92,7 @@ if __name__ == "__main__":
                             auc_b = 0.0
                             snum = len([a for a in datalist if a.startswith("exps")])
                             bnum = len(datalist) - snum
+                            aucs = []
                             for i, dataname in enumerate(datalist):
                                 true_df = pd.read_csv(truefilename.format(dataname, 'aracne'), index_col=0, sep='\t')
                                 predicted_df = compute_aggregated_matrix(len(d_t) + len(p_t) + len(s_t), 
@@ -111,13 +112,14 @@ if __name__ == "__main__":
                                 #     print("error", dataname, algo)
                                 fpr, tpr, thresholds = roc_curve(true_array, predicted_array)
                                 roc_auc = auc(fpr, tpr)
+                                aucs.append(roc_auc)
                                 if dataname.startswith("exps"):
                                     auc_s += roc_auc
                                 else:
                                     auc_b += roc_auc
                             auc_s /= snum
                             auc_b /= bnum
-                            results.append((auc_b, auc_s, d_t, p_t, s_t))
+                            results.append((auc_b, auc_s, d_t, p_t, s_t, aucs))
                             print("done", results[len(results) - 1])
     results.sort()
     with open(saveresultsfile, 'a') as f:
