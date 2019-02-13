@@ -107,7 +107,8 @@ algolist_sergey = ['']
 datafolder_sergey = "/home/user/Sirius/sergeysdata"
 truedatafolder = "/home/user/Sirius/gene_network_sirius_2019/Matrices_1"
 
-datalist = ['genes_200_exps_10_bgr', 'genes_200_exps_20_bgr', 'genes_200_exps_40_bgr']
+# datalist = ['genes_200_exps_10_bgr', 'genes_200_exps_20_bgr', 'genes_200_exps_40_bgr']
+datalist = ['exps_100_2']
 
 truefilename = truedatafolder + "/{1}_{0}_true.txt"
 dataname_sergey = datafolder_sergey + "/{0}_{1}.csv"
